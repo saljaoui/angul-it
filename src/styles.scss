@@ -1,1 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+    font-family: 'Syne', sans-serif;
+    cursor: crosshair;
+}
+
+/* scanlines */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 50;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px,
+            rgba(0, 0, 0, 0.04) 2px, rgba(0, 0, 0, 0.04) 4px);
+}

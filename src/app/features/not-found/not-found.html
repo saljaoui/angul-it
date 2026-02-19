@@ -1,0 +1,143 @@
+<div class="bg-[#080808] text-[#f0f0f0] min-h-screen overflow-x-hidden">
+
+    <!-- ══ NAV ══ -->
+    <nav class="fixed inset-x-0 top-0 z-40 flex items-center justify-between
+              px-8 md:px-16 py-4 bg-[#080808]/90 backdrop-blur border-b border-g fu1">
+        <a href="index.html" class="mono font-bold tracking-widest text-sm text-[#00ff41]">
+            angul<span class="text-[#f0f0f0]">-it</span>
+        </a>
+        <ul class="hidden md:flex gap-10">
+            <li><a href="#"
+                    class="mono text-[#555] text-xs tracking-widest uppercase hover:text-[#00ff41] transition-colors">Features</a>
+            </li>
+            <li><a href="#"
+                    class="mono text-[#555] text-xs tracking-widest uppercase hover:text-[#00ff41] transition-colors">How
+                    it works</a></li>
+            <li><a href="#"
+                    class="mono text-[#555] text-xs tracking-widest uppercase hover:text-[#00ff41] transition-colors">About</a>
+            </li>
+        </ul>
+        <button
+            class="nav-btn mono bg-[#00ff41] text-[#080808] font-bold text-xs tracking-widest uppercase px-5 py-2.5">
+            Start Challenge
+        </button>
+    </nav>
+
+    <!-- ══ MAIN ══ -->
+    <main class="relative min-h-screen flex flex-col items-center justify-center
+               px-8 md:px-16 pt-24 pb-16 overflow-hidden">
+
+        <!-- ghost 404 bg -->
+        <div class="ghost-404">404</div>
+
+        <!-- scan sweep -->
+        <div class="scan-sweep"></div>
+
+        <!-- top status badge -->
+        <div class="fu1 inline-flex items-center gap-2 border border-g px-3 py-1.5 mb-10 relative z-10">
+            <span class="w-2 h-2 rounded-full bg-[#ff0040] pulse-dot"></span>
+            <span class="mono text-[#ff0040] text-xs tracking-widest uppercase">Error — Page Not Found</span>
+        </div>
+
+        <!-- big 404 number -->
+        <div class="fu2 relative z-10 mb-6 flicker">
+            <div class="glitch-wrap glow-text
+                  font-extrabold tracking-tighter leading-none text-[#00ff41]" data-text="404"
+                style="font-size:clamp(6rem,18vw,13rem)">
+                404
+            </div>
+        </div>
+
+        <!-- headline -->
+        <h1 class="fu3 font-extrabold tracking-tight text-center leading-tight mb-4 relative z-10"
+            style="font-size:clamp(1.6rem,3.5vw,3rem)">
+            You've left the<br>
+            <span class="text-[#00ff41]">authorized zone.</span>
+        </h1>
+
+        <p class="fu4 text-[#555] text-base text-center max-w-sm leading-relaxed mb-10 relative z-10">
+            The page you're looking for doesn't exist, was moved, or requires a completed challenge to access.
+        </p>
+
+        <!-- CTA buttons -->
+        <div class="fu5 flex flex-wrap items-center justify-center gap-4 mb-16 relative z-10">
+            <a href="index.html" class="glow-btn mono bg-[#00ff41] text-[#080808] font-bold
+                text-sm tracking-widest uppercase px-8 py-3.5 inline-block">
+                ← Back to Home
+            </a>
+            <a href="#" class="mono border border-g text-[#555] font-bold
+                text-sm tracking-widest uppercase px-8 py-3.5 inline-block
+                hover:text-[#00ff41] hover:border-[#00ff41] transition-colors">
+                Start Challenge
+            </a>
+        </div>
+
+        <!-- terminal log card -->
+        <div class="fu5 relative w-full max-w-lg border border-g bg-[#0a0a0a] relative z-10">
+            <!-- card top glow bar -->
+            <div class="absolute top-0 left-[10%] right-[10%] h-[2px] bg-[#00ff41]" style="box-shadow:0 0 10px #00ff41">
+            </div>
+
+            <!-- card header -->
+            <div class="flex items-center justify-between px-5 py-3 border-b border-g">
+                <span class="mono text-[#00ff41] text-xs tracking-widest uppercase">// system log</span>
+                <div class="flex items-center gap-1.5">
+                    <span class="w-2.5 h-2.5 rounded-full bg-[#ff0040] opacity-60"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-[#ffaa00] opacity-60"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-[#00ff41] opacity-60"></span>
+                </div>
+            </div>
+
+            <!-- log rows -->
+            <div class="px-5 py-4 space-y-0 mono text-xs leading-relaxed">
+                <div class="log-row py-2 flex gap-3">
+                    <span class="text-[#333] shrink-0">00:00:01</span>
+                    <span class="text-[#555]">REQUEST</span>
+                    <span class="text-[#f0f0f0]">GET /unknown-path</span>
+                </div>
+                <div class="log-row py-2 flex gap-3">
+                    <span class="text-[#333] shrink-0">00:00:01</span>
+                    <span class="text-[#555]">ROUTER</span>
+                    <span class="text-[#ffaa00]">No route matched for this path</span>
+                </div>
+                <div class="log-row py-2 flex gap-3">
+                    <span class="text-[#333] shrink-0">00:00:01</span>
+                    <span class="text-[#555]">GUARD</span>
+                    <span class="text-[#555]">Checking session state... </span>
+                    <span class="text-[#ff0040]">NONE</span>
+                </div>
+                <div class="log-row py-2 flex gap-3">
+                    <span class="text-[#333] shrink-0">00:00:02</span>
+                    <span class="text-[#555]">ACCESS</span>
+                    <span class="text-[#ff0040] font-bold">DENIED — 404 Not Found</span>
+                </div>
+                <div class="py-2 flex gap-3">
+                    <span class="text-[#333] shrink-0">00:00:02</span>
+                    <span class="text-[#00ff41]">$</span>
+                    <span class="text-[#00ff41]">Awaiting navigation<span class="blink">_</span></span>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- ══ FOOTER ══ -->
+    <footer class="border-t border-g px-8 md:px-16 py-5
+                 flex flex-col md:flex-row items-center justify-between gap-3">
+        <span class="mono text-[#00ff41] text-sm font-bold tracking-widest">angul-it</span>
+        <span class="mono text-[#2a2a2a] text-[10px] tracking-widest">© 2025 — Built with Angular &amp; zero
+            excuses</span>
+        <ul class="flex gap-6">
+            <li><a href="#"
+                    class="mono text-[#2a2a2a] text-[10px] tracking-widest uppercase hover:text-[#00ff41] transition-colors">GitHub</a>
+            </li>
+            <li><a href="#"
+                    class="mono text-[#2a2a2a] text-[10px] tracking-widest uppercase hover:text-[#00ff41] transition-colors">Docs</a>
+            </li>
+            <li><a href="#"
+                    class="mono text-[#2a2a2a] text-[10px] tracking-widest uppercase hover:text-[#00ff41] transition-colors">About</a>
+            </li>
+        </ul>
+    </footer>
+
+</div>

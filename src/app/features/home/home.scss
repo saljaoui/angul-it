@@ -1,12 +1,4 @@
- body { font-family: 'Syne', sans-serif; cursor: crosshair; }
     .mono { font-family: 'Space Mono', monospace; }
-
-    /* scanlines */
-    body::before {
-      content: '';
-      position: fixed; inset: 0; pointer-events: none; z-index: 50;
-      background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.04) 2px, rgba(0,0,0,0.04) 4px);
-    }
 
     .glow-text  { text-shadow: 0 0 24px rgba(0,255,65,0.55); }
     .glow-green { box-shadow: 0 0 24px rgba(0,255,65,0.35); }

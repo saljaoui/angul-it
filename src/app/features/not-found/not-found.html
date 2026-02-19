@@ -1,27 +1,7 @@
 <div class="bg-[#080808] text-[#f0f0f0] min-h-screen overflow-x-hidden">
 
     <!-- ══ NAV ══ -->
-    <nav class="fixed inset-x-0 top-0 z-40 flex items-center justify-between
-              px-8 md:px-16 py-4 bg-[#080808]/90 backdrop-blur border-b border-g fu1">
-        <a href="index.html" class="mono font-bold tracking-widest text-sm text-[#00ff41]">
-            angul<span class="text-[#f0f0f0]">-it</span>
-        </a>
-        <ul class="hidden md:flex gap-10">
-            <li><a href="#"
-                    class="mono text-[#555] text-xs tracking-widest uppercase hover:text-[#00ff41] transition-colors">Features</a>
-            </li>
-            <li><a href="#"
-                    class="mono text-[#555] text-xs tracking-widest uppercase hover:text-[#00ff41] transition-colors">How
-                    it works</a></li>
-            <li><a href="#"
-                    class="mono text-[#555] text-xs tracking-widest uppercase hover:text-[#00ff41] transition-colors">About</a>
-            </li>
-        </ul>
-        <button
-            class="nav-btn mono bg-[#00ff41] text-[#080808] font-bold text-xs tracking-widest uppercase px-5 py-2.5">
-            Start Challenge
-        </button>
-    </nav>
+    <app-navbar></app-navbar>
 
     <!-- ══ MAIN ══ -->
     <main class="relative min-h-screen flex flex-col items-center justify-center
@@ -73,7 +53,7 @@
         </div>
 
         <!-- terminal log card -->
-        <div class="fu5 relative w-full max-w-lg border border-g bg-[#0a0a0a] relative z-10">
+        <div class="fu5 w-full max-w-lg border border-g bg-[#0a0a0a] relative z-10">
             <!-- card top glow bar -->
             <div class="absolute top-0 left-[10%] right-[10%] h-[2px] bg-[#00ff41]" style="box-shadow:0 0 10px #00ff41">
             </div>
@@ -122,22 +102,6 @@
     </main>
 
     <!-- ══ FOOTER ══ -->
-    <footer class="border-t border-g px-8 md:px-16 py-5
-                 flex flex-col md:flex-row items-center justify-between gap-3">
-        <span class="mono text-[#00ff41] text-sm font-bold tracking-widest">angul-it</span>
-        <span class="mono text-[#2a2a2a] text-[10px] tracking-widest">© 2025 — Built with Angular &amp; zero
-            excuses</span>
-        <ul class="flex gap-6">
-            <li><a href="#"
-                    class="mono text-[#2a2a2a] text-[10px] tracking-widest uppercase hover:text-[#00ff41] transition-colors">GitHub</a>
-            </li>
-            <li><a href="#"
-                    class="mono text-[#2a2a2a] text-[10px] tracking-widest uppercase hover:text-[#00ff41] transition-colors">Docs</a>
-            </li>
-            <li><a href="#"
-                    class="mono text-[#2a2a2a] text-[10px] tracking-widest uppercase hover:text-[#00ff41] transition-colors">About</a>
-            </li>
-        </ul>
-    </footer>
+    <app-footer></app-footer>
 
 </div>

@@ -1,0 +1,387 @@
+<div class="bg-[#080808] text-[#f0f0f0] overflow-x-hidden">
+
+    <!-- ══════════ NAV ══════════ -->
+    <nav class="fixed inset-x-0 top-0 z-40 flex items-center justify-between
+              px-8 md:px-16 py-4
+              bg-[#080808]/90 backdrop-blur
+              border-b border-g fu1">
+        <span class="mono font-bold tracking-widest text-sm text-[#00ff41]">
+            angul<span class="text-[#f0f0f0]">-it</span>
+        </span>
+
+        <ul class="hidden md:flex gap-10">
+            <li><a href="#features"
+                    class="mono text-[#555] text-xs tracking-widest uppercase hover:text-[#00ff41] transition-colors">Features</a>
+            </li>
+            <li><a href="#how"
+                    class="mono text-[#555] text-xs tracking-widest uppercase hover:text-[#00ff41] transition-colors">How
+                    it works</a></li>
+            <li><a href="#about"
+                    class="mono text-[#555] text-xs tracking-widest uppercase hover:text-[#00ff41] transition-colors">About</a>
+            </li>
+        </ul>
+
+        <button class="btn-g mono bg-[#00ff41] text-[#080808] font-bold text-xs tracking-widest uppercase px-5 py-2.5">
+            Start Challenge
+        </button>
+    </nav>
+
+    <!-- ══════════ HERO ══════════ -->
+    <section class="min-h-screen grid grid-cols-1 lg:grid-cols-2 items-center
+                  gap-12 px-8 md:px-16 pt-28 pb-16">
+
+        <!-- Left copy -->
+        <div class="space-y-8">
+            <div class="fu1 inline-flex items-center gap-2 border border-g px-3 py-1.5">
+                <span class="w-2 h-2 rounded-full bg-[#00ff41] pulse-dot"></span>
+                <span class="mono text-[#00ff41] text-xs tracking-widest uppercase">v1.0 — Active</span>
+            </div>
+
+            <h1 class="fu2 font-extrabold leading-[1.0] tracking-tighter" style="font-size:clamp(3rem,6vw,5.5rem)">
+                Prove You're<br>
+                <span class="text-[#00ff41] glow-text">Human.</span><br>
+                Not a Bot.
+            </h1>
+
+            <p class="fu3 text-[#666] text-lg leading-relaxed max-w-md">
+                A multi-stage CAPTCHA engineered to separate real users from automated bots —
+                through visual puzzles, logic challenges, and sharp validation.
+            </p>
+
+            <div class="fu4 flex items-center gap-6 flex-wrap">
+                <a href="#" class="btn-g mono bg-[#00ff41] text-[#080808] font-bold text-sm
+                           tracking-widest uppercase px-8 py-3.5 inline-block">
+                    Start Challenge →
+                </a>
+                <a href="#how" class="mono text-[#444] text-xs tracking-widest uppercase
+                              hover:text-[#f0f0f0] transition-colors flex items-center gap-2">
+                    How it works
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                </a>
+            </div>
+
+            <!-- terminal strip -->
+            <div class="fu5 mono text-xs text-[#2a2a2a] border-t border-[#111] pt-5 space-y-1">
+                <div><span class="text-[#00ff41]">$</span> init captcha <span class="text-[#3a3a3a]">--stages=4
+                        --mode=strict</span></div>
+                <div><span class="text-[#00ff41]">✓</span> Session initialized. <span class="text-[#333]">State
+                        persisted.</span></div>
+                <div><span class="text-[#00ff41]">▶</span> Awaiting user input<span
+                        class="text-[#00ff41] blink">_</span></div>
+            </div>
+        </div>
+
+        <!-- Right — CAPTCHA preview card -->
+        <div class="hidden lg:flex justify-center fu3">
+            <div class="relative w-[370px] bg-[#0a0a0a] border border-g p-7 card-line">
+
+                <div class="flex items-center justify-between mb-5 pb-4 border-b border-g">
+                    <span class="mono text-[#00ff41] text-xs tracking-widest uppercase">// Challenge 01</span>
+                    <span class="mono text-[#2a2a2a] text-[10px] tracking-wider">Stage 1 of 4</span>
+                </div>
+
+                <p class="text-sm font-semibold mb-3 leading-snug">
+                    Select all images containing a
+                    <span class="text-[#00ff41]"
+                        style="text-decoration:underline;text-underline-offset:5px;text-decoration-color:#00ff41">
+                        traffic light
+                    </span>
+                </p>
+
+                <!-- progress bar -->
+                <div class="w-full bg-[#111] h-px mb-5">
+                    <div class="prog-bar h-px bg-[#00ff41]" style="width:0"></div>
+                </div>
+
+                <!-- 3×3 grid -->
+                <div class="grid grid-cols-3 gap-1.5 mb-5">
+
+                    <!-- Traffic light -->
+                    <div class="cell aspect-square bg-[#0d0d0d] border flex items-center justify-center">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#00ff41" stroke-width="1.5"
+                            opacity=".55">
+                            <rect x="7" y="2" width="10" height="20" rx="2" />
+                            <circle cx="12" cy="6" r="2.2" />
+                            <circle cx="12" cy="12" r="2.2" />
+                            <circle cx="12" cy="18" r="2.2" />
+                        </svg>
+                    </div>
+                    <!-- Lock -->
+                    <div class="cell aspect-square bg-[#0d0d0d] border flex items-center justify-center">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="1.5">
+                            <rect x="3" y="11" width="18" height="11" rx="2" />
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                        </svg>
+                    </div>
+                    <!-- Clock -->
+                    <div class="cell aspect-square bg-[#0d0d0d] border flex items-center justify-center">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="1.5">
+                            <circle cx="12" cy="12" r="10" />
+                            <path d="M12 8v4l3 3" />
+                        </svg>
+                    </div>
+
+                    <!-- House -->
+                    <div class="cell aspect-square bg-[#0d0d0d] border flex items-center justify-center">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="1.5">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                        </svg>
+                    </div>
+                    <!-- Traffic light 2 -->
+                    <div class="cell aspect-square bg-[#0d0d0d] border flex items-center justify-center">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#00ff41" stroke-width="1.5"
+                            opacity=".55">
+                            <rect x="7" y="2" width="10" height="20" rx="2" />
+                            <circle cx="12" cy="6" r="2.2" />
+                            <circle cx="12" cy="12" r="2.2" />
+                            <circle cx="12" cy="18" r="2.2" />
+                        </svg>
+                    </div>
+                    <!-- Person -->
+                    <div class="cell aspect-square bg-[#0d0d0d] border flex items-center justify-center">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="1.5">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                            <circle cx="9" cy="7" r="4" />
+                        </svg>
+                    </div>
+
+                    <!-- Wave -->
+                    <div class="cell aspect-square bg-[#0d0d0d] border flex items-center justify-center">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="1.5">
+                            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+                        </svg>
+                    </div>
+                    <!-- Monitor -->
+                    <div class="cell aspect-square bg-[#0d0d0d] border flex items-center justify-center">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="1.5">
+                            <rect x="2" y="3" width="20" height="14" rx="2" />
+                            <path d="M8 21h8M12 17v4" />
+                        </svg>
+                    </div>
+                    <!-- Traffic light 3 -->
+                    <div class="cell aspect-square bg-[#0d0d0d] border flex items-center justify-center">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#00ff41" stroke-width="1.5"
+                            opacity=".55">
+                            <rect x="7" y="2" width="10" height="20" rx="2" />
+                            <circle cx="12" cy="6" r="2.2" />
+                            <circle cx="12" cy="12" r="2.2" />
+                            <circle cx="12" cy="18" r="2.2" />
+                        </svg>
+                    </div>
+                </div>
+
+                <button class="btn-g w-full mono bg-[#00ff41] text-[#080808] font-bold
+                       text-xs tracking-widest uppercase py-3">
+                    Verify Selection
+                </button>
+
+                <div class="flex items-center justify-between mt-4">
+                    <div class="flex gap-1.5 items-center">
+                        <span class="w-2 h-2 rounded-full bg-[#00ff41]" style="box-shadow:0 0 6px #00ff41"></span>
+                        <span class="w-2 h-2 rounded-full bg-[#1e1e1e]"></span>
+                        <span class="w-2 h-2 rounded-full bg-[#1e1e1e]"></span>
+                        <span class="w-2 h-2 rounded-full bg-[#1e1e1e]"></span>
+                    </div>
+                    <span class="mono text-[#2a2a2a] text-[10px] tracking-wider">Click all matching tiles</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════ STATS ══════════ -->
+    <div class="border-y border-g grid grid-cols-2 md:grid-cols-4">
+        <div class="px-10 py-8 border-r border-g">
+            <div class="text-4xl font-extrabold tracking-tight">4<span class="text-[#00ff41]">+</span></div>
+            <div class="mono text-[#3a3a3a] text-[10px] tracking-widest uppercase mt-1">Challenge Stages</div>
+        </div>
+        <div class="px-10 py-8 border-r border-g">
+            <div class="text-4xl font-extrabold tracking-tight">99<span class="text-[#00ff41]">%</span></div>
+            <div class="mono text-[#3a3a3a] text-[10px] tracking-widest uppercase mt-1">Accuracy Rate</div>
+        </div>
+        <div class="px-10 py-8 border-r border-g">
+            <div class="text-4xl font-extrabold tracking-tight text-[#00ff41]">0</div>
+            <div class="mono text-[#3a3a3a] text-[10px] tracking-widest uppercase mt-1">External Libraries</div>
+        </div>
+        <div class="px-10 py-8">
+            <div class="text-4xl font-extrabold tracking-tight">∞</div>
+            <div class="mono text-[#3a3a3a] text-[10px] tracking-widest uppercase mt-1">Replayability</div>
+        </div>
+    </div>
+
+    <!-- ══════════ FEATURES ══════════ -->
+    <section id="features" class="px-8 md:px-16 py-24">
+        <div class="mono text-[#00ff41] text-xs tracking-widest uppercase
+                flex items-center gap-3 mb-3">
+            <span class="w-6 h-px bg-[#00ff41] inline-block"></span>What we offer
+        </div>
+        <h2 class="font-extrabold tracking-tight leading-tight mb-16 max-w-md"
+            style="font-size:clamp(1.8rem,3vw,2.8rem)">
+            Built different.<br>Validated better.
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3
+                border border-g divide-y lg:divide-y-0 divide-g">
+
+            <div class="feat relative p-8 lg:border-r border-g">
+                <svg class="text-[#00ff41] opacity-75 mb-5" width="34" height="34" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="1.5">
+                    <rect x="7" y="2" width="10" height="20" rx="2" />
+                    <circle cx="12" cy="6" r="1.5" />
+                    <circle cx="12" cy="12" r="1.5" />
+                    <circle cx="12" cy="18" r="1.5" />
+                </svg>
+                <div class="font-bold text-base mb-2">Multi-Stage Challenges</div>
+                <div class="text-[#555] text-sm leading-relaxed">Image recognition, logic puzzles, and text verification
+                    — each more nuanced than the last.</div>
+            </div>
+
+            <div class="feat relative p-8 lg:border-r border-g">
+                <svg class="text-[#00ff41] opacity-75 mb-5" width="34" height="34" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="1.5">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                </svg>
+                <div class="font-bold text-base mb-2">Zero External Libraries</div>
+                <div class="text-[#555] text-sm leading-relaxed">Custom-built CAPTCHA logic. No reCAPTCHA, no
+                    third-party APIs. Pure Angular implementation.</div>
+            </div>
+
+            <div class="feat relative p-8">
+                <svg class="text-[#00ff41] opacity-75 mb-5" width="34" height="34" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="1.5">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                </svg>
+                <div class="font-bold text-base mb-2">Smart Validation</div>
+                <div class="text-[#555] text-sm leading-relaxed">Real-time form validation with clear feedback. No stage
+                    is skippable without a correct answer.</div>
+            </div>
+
+            <div class="feat relative p-8 border-t border-g lg:border-r">
+                <svg class="text-[#00ff41] opacity-75 mb-5" width="34" height="34" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="1.5">
+                    <path d="M20 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z" />
+                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+                </svg>
+                <div class="font-bold text-base mb-2">State Persistence</div>
+                <div class="text-[#555] text-sm leading-relaxed">Refresh and pick up where you left off. Session state
+                    survives every reload without losing progress.</div>
+            </div>
+
+            <div class="feat relative p-8 border-t border-g lg:border-r">
+                <svg class="text-[#00ff41] opacity-75 mb-5" width="34" height="34" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="1.5">
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01" />
+                </svg>
+                <div class="font-bold text-base mb-2">Responsive & Accessible</div>
+                <div class="text-[#555] text-sm leading-relaxed">Designed mobile-first. Works on any device, screen
+                    size, or interaction model without compromise.</div>
+            </div>
+
+            <div class="feat relative p-8 border-t border-g">
+                <svg class="text-[#00ff41] opacity-75 mb-5" width="34" height="34" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="1.5">
+                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+                </svg>
+                <div class="font-bold text-base mb-2">Results Dashboard</div>
+                <div class="text-[#555] text-sm leading-relaxed">Scores, accuracy, timing — all shown after completion.
+                    Direct URL access blocked without a valid session.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════ HOW IT WORKS ══════════ -->
+    <section id="how" class="px-8 md:px-16 pb-24">
+        <div class="mono text-[#00ff41] text-xs tracking-widest uppercase
+                flex items-center gap-3 mb-3">
+            <span class="w-6 h-px bg-[#00ff41] inline-block"></span>The process
+        </div>
+        <h2 class="font-extrabold tracking-tight leading-tight mb-16 max-w-md"
+            style="font-size:clamp(1.8rem,3vw,2.8rem)">
+            Three steps.<br>No shortcuts.
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 border border-g">
+            <div class="p-10 border-b md:border-b-0 md:border-r border-g">
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="step-sq mono text-xs w-7 h-7 flex items-center justify-center font-bold">01</span>
+                    <span class="mono text-[#00ff41] text-xs tracking-widest uppercase">Begin</span>
+                </div>
+                <div class="font-bold text-lg mb-3">Enter the Challenge</div>
+                <div class="text-[#555] text-sm leading-relaxed">Hit Start Challenge. Your session initializes, state is
+                    prepared, and Stage 1 loads instantly.</div>
+            </div>
+
+            <div class="p-10 border-b md:border-b-0 md:border-r border-g">
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="step-sq mono text-xs w-7 h-7 flex items-center justify-center font-bold">02</span>
+                    <span class="mono text-[#00ff41] text-xs tracking-widest uppercase">Solve</span>
+                </div>
+                <div class="font-bold text-lg mb-3">Complete Each Stage</div>
+                <div class="text-[#555] text-sm leading-relaxed">Work through image grids, math puzzles, and text
+                    inputs. Each stage validates before unlocking the next.</div>
+            </div>
+
+            <div class="p-10">
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="step-sq mono text-xs w-7 h-7 flex items-center justify-center font-bold">03</span>
+                    <span class="mono text-[#00ff41] text-xs tracking-widest uppercase">Result</span>
+                </div>
+                <div class="font-bold text-lg mb-3">See Your Score</div>
+                <div class="text-[#555] text-sm leading-relaxed">After all stages, your performance is displayed. Only
+                    legitimate completions reach the results page.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════ CTA ══════════ -->
+    <section class="relative overflow-hidden mx-8 md:mx-16 mb-20
+                  border border-g bg-[#00ff41]/[0.03]
+                  py-24 flex flex-col items-center text-center">
+        <div class="ghost">ANGUL-IT</div>
+
+        <div class="mono text-[#00ff41] text-xs tracking-widest uppercase
+                flex items-center gap-3 mb-5 relative z-10">
+            <span class="w-6 h-px bg-[#00ff41] inline-block"></span>
+            Ready?
+            <span class="w-6 h-px bg-[#00ff41] inline-block"></span>
+        </div>
+
+        <h2 class="font-extrabold tracking-tight leading-tight mb-4 relative z-10"
+            style="font-size:clamp(2rem,5vw,4rem)">
+            Are you human<br>enough to pass?
+        </h2>
+
+        <p class="text-[#444] mb-10 text-base max-w-xs relative z-10">
+            No second chances. No hints.<br>Just you and the CAPTCHA.
+        </p>
+
+        <a href="#" class="btn-g mono bg-[#00ff41] text-[#080808] font-bold
+                       text-sm tracking-widest uppercase px-10 py-4
+                       inline-block relative z-10">
+            Begin the Challenge →
+        </a>
+    </section>
+
+    <!-- ══════════ FOOTER ══════════ -->
+    <footer class="border-t border-g px-8 md:px-16 py-5
+                 flex flex-col md:flex-row items-center justify-between gap-3">
+        <span class="mono text-[#00ff41] text-sm font-bold tracking-widest">angul-it</span>
+        <span class="mono text-[#2a2a2a] text-[10px] tracking-widest">
+            © 2025 — Built with Angular &amp; zero excuses
+        </span>
+        <ul class="flex gap-6">
+            <li><a href="#"
+                    class="mono text-[#2a2a2a] text-[10px] tracking-widest uppercase hover:text-[#00ff41] transition-colors">GitHub</a>
+            </li>
+            <li><a href="#"
+                    class="mono text-[#2a2a2a] text-[10px] tracking-widest uppercase hover:text-[#00ff41] transition-colors">Docs</a>
+            </li>
+            <li><a href="#"
+                    class="mono text-[#2a2a2a] text-[10px] tracking-widest uppercase hover:text-[#00ff41] transition-colors">About</a>
+            </li>
+        </ul>
+    </footer>
+
+</div>

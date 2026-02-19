@@ -1,49 +1,16 @@
-.mono {
-    font-family: 'Space Mono', monospace;
-}
-
-.border-g {
-    border-color: rgba(0, 255, 65, 0.18);
+.score.shimmer-text{
+  font-family: "Space Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
 }
 
 .glow-text {
     text-shadow: 0 0 30px rgba(0, 255, 65, 0.55), 0 0 60px rgba(0, 255, 65, 0.2);
 }
 
-.glow-btn {
-    transition: box-shadow .2s, transform .15s;
-}
-
-.glow-btn:hover {
-    box-shadow: 0 0 24px rgba(0, 255, 65, .4);
-    transform: translateY(-1px);
-}
 
 /* animations */
-@keyframes blink {
-
-    0%,
-    100% {
-        opacity: 1
-    }
-
-    50% {
-        opacity: 0
-    }
-}
-
-@keyframes pulse-dot {
-
-    0%,
-    100% {
-        opacity: 1
-    }
-
-    50% {
-        opacity: .15
-    }
-}
-
 @keyframes fadeUp {
     from {
         opacity: 0;
@@ -53,16 +20,6 @@
     to {
         opacity: 1;
         transform: translateY(0)
-    }
-}
-
-@keyframes scan-line {
-    0% {
-        top: -4px
-    }
-
-    100% {
-        top: 100%
     }
 }
 
@@ -142,14 +99,6 @@
         transform: scaleX(1);
         transform-origin: left;
     }
-}
-
-.blink {
-    animation: blink 1s step-end infinite;
-}
-
-.pulse-dot {
-    animation: pulse-dot 1.5s ease infinite;
 }
 
 .fu1 {
@@ -238,6 +187,7 @@
     background: linear-gradient(90deg, #00ff41 0%, #80ffb0 40%, #00ff41 60%, #00ff41 100%);
     background-size: 400px 100%;
     -webkit-background-clip: text;
+    background-clip: linear-gradient(90deg, #00ff41 0%, #80ffb0 40%, #00ff41 60%, #00ff41 100%);
     -webkit-text-fill-color: transparent;
     animation: shimmer 2.5s 1s linear infinite;
 }
@@ -290,15 +240,6 @@
     font-family: 'Syne', sans-serif;
 }
 
-/* nav btn */
-.nav-btn {
-    transition: box-shadow .2s, transform .15s;
-}
-
-.nav-btn:hover {
-    box-shadow: 0 0 20px rgba(0, 255, 65, .4);
-    transform: translateY(-1px);
-}
 
 /* passed / failed badge */
 .badge-pass {

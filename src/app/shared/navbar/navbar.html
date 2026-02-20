@@ -7,18 +7,15 @@
     </span>
 
     <ul class="hidden md:flex gap-10">
-        <li><a href="#features"
+        <li><a routerLink="." fragment="features"
                 class="mono text-[#555] text-xs tracking-widest uppercase hover:text-[#00ff41] transition-colors">Features</a>
         </li>
-        <li><a href="#how"
+        <li><a routerLink="." fragment="how"
                 class="mono text-[#555] text-xs tracking-widest uppercase hover:text-[#00ff41] transition-colors">How
                 it works</a></li>
-        <li><a href="#about"
-                class="mono text-[#555] text-xs tracking-widest uppercase hover:text-[#00ff41] transition-colors">About</a>
-        </li>
     </ul>
 
-    <button class="btn-g mono bg-[#00ff41] text-[#080808] font-bold text-xs tracking-widest uppercase px-5 py-2.5">
+    <a routerLink="/captcha" class="btn-g mono bg-[#00ff41] text-[#080808] font-bold text-xs tracking-widest uppercase px-5 py-2.5">
         Start Challenge
-    </button>
+    </a>
 </nav>

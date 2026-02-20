@@ -1,245 +1,203 @@
 <div class="bg-[#080808] text-[#f0f0f0] min-h-screen overflow-x-hidden">
 
-    <!-- ══ NAV ══ -->
+    <!-- NAV -->
     <nav class="fixed inset-x-0 top-0 z-40 flex items-center justify-between
               px-8 md:px-16 py-4 bg-[#080808]/90 backdrop-blur border-b border-g fu1">
-        <a href="index.html" class="mono font-bold tracking-widest text-sm text-[#00ff41]">
+        <a routerLink="/" class="mono font-bold tracking-widest text-sm text-[#00ff41]">
             angul<span class="text-[#f0f0f0]">-it</span>
         </a>
 
-        <!-- all stages done -->
         <div class="hidden md:flex items-center gap-2">
-            <div
-                class="mono text-[10px] tracking-widest uppercase px-3 py-1 border text-[#080808] bg-[#00ff41] border-[#00ff41]">
-                01 Image</div>
-            <div class="w-6 h-px bg-[#00ff41]/30"></div>
-            <div
-                class="mono text-[10px] tracking-widest uppercase px-3 py-1 border text-[#080808] bg-[#00ff41] border-[#00ff41]">
-                02 Math</div>
-            <div class="w-6 h-px bg-[#00ff41]/30"></div>
-            <div
-                class="mono text-[10px] tracking-widest uppercase px-3 py-1 border text-[#080808] bg-[#00ff41] border-[#00ff41]">
-                03 Text</div>
+            @for (type of attempt.challengeOrder; track type; let i = $index) {
+            <div class="mono text-[10px] tracking-widest uppercase px-3 py-1 border
+                    text-[#080808] bg-[#00ff41] border-[#00ff41]">
+                {{ (i + 1).toString().padStart(2, '0') }} {{ type }}
+            </div>
+            @if (i < attempt.challengeOrder.length - 1) { <div class="w-6 h-px bg-[#00ff41]/30">
         </div>
+        }
+        }
+</div>
 
-        <div class="flex items-center gap-2">
-            <span class="w-2 h-2 rounded-full bg-[#00ff41] pulse-dot"></span>
-            <span class="mono text-[#00ff41] text-xs tracking-widest">Completed</span>
-        </div>
-    </nav>
+<div class="flex items-center gap-2">
+    <span class="w-2 h-2 rounded-full bg-[#00ff41] pulse-dot"></span>
+    <span class="mono text-xs tracking-widest" [style.color]="verdict.color">
+        {{ score === 100 ? 'Completed' : 'Failed' }}
+    </span>
+</div>
+</nav>
 
-    <!-- ══ MAIN ══ -->
-    <main class="relative min-h-screen flex flex-col items-center
+<!-- MAIN -->
+<main class="relative min-h-screen flex flex-col items-center
                px-4 md:px-8 pt-28 pb-20 overflow-hidden">
 
-        <div class="scan-sweep"></div>
-        <div class="ghost">PASS</div>
+    <div class="scan-sweep"></div>
+    <div class="ghost" [style.color]="verdict.color">
+        {{ score === 100 ? 'PASS' : 'FAIL' }}
+    </div>
 
-        <!-- status badge -->
-        <div class="fu1 inline-flex items-center gap-2 border border-g px-3 py-1.5 mb-8 relative z-10">
-            <span class="w-2 h-2 rounded-full bg-[#00ff41] pulse-dot"></span>
-            <span class="mono text-[#00ff41] text-xs tracking-widest uppercase">Challenge Complete — Human
-                Verified</span>
-        </div>
+    <!-- status badge -->
+    <div class="fu1 inline-flex items-center gap-2 border border-g px-3 py-1.5 mb-8 relative z-10">
+        <span class="w-2 h-2 rounded-full bg-[#00ff41] pulse-dot"></span>
+        <span class="mono text-[#00ff41] text-xs tracking-widest uppercase">
+            Challenge Complete — Human Verified
+        </span>
+    </div>
 
-        <!-- ══ HERO SCORE ══ -->
-        <div class="fu2 relative z-10 flex flex-col items-center mb-12">
-
-            <!-- ring -->
-            <div class="relative w-48 h-48 mb-6 flicker">
-                <svg class="w-full h-full" viewBox="0 0 100 100">
-                    <circle class="ring-track" cx="50" cy="50" r="45" fill="none" stroke-width="4" />
-                    <circle class="ring-fill" cx="50" cy="50" r="45" fill="none" stroke-width="4" />
-                </svg>
-                <!-- center score -->
-                <div class="absolute inset-0 flex flex-col items-center justify-center">
-                    <div class="shimmer-text font-extrabold tracking-tight leading-none" style="font-size:3.2rem">87
-                    </div>
-                    <div class="mono text-[#333] text-[10px] tracking-widest uppercase mt-1">/ 100</div>
+    <!-- HERO SCORE -->
+    <div class="fu2 relative z-10 flex flex-col items-center mb-12">
+        <div class="relative w-48 h-48 mb-6 flicker">
+            <svg class="w-full h-full" viewBox="0 0 100 100">
+                <circle class="ring-track" cx="50" cy="50" r="45" fill="none" stroke-width="4" />
+                <circle class="ring-fill" cx="50" cy="50" r="45" fill="none" stroke-width="4"
+                    [style.stroke-dasharray]="282.74" [style.stroke-dashoffset]="ringOffset"
+                    style="transform: rotate(-90deg); transform-origin: 50% 50%; transition: stroke-dashoffset 1s ease" />
+            </svg>
+            <div class="absolute inset-0 flex flex-col items-center justify-center">
+                <div class="shimmer-text font-extrabold tracking-tight leading-none" style="font-size:3.2rem">
+                    {{ score }}
                 </div>
-            </div>
-
-            <h1 class="font-extrabold tracking-tight text-center leading-tight mb-2"
-                style="font-size:clamp(1.8rem,4vw,3rem)">
-                You're <span class="text-[#00ff41] glow-text">Human.</span>
-            </h1>
-            <p class="mono text-[#444] text-sm tracking-wide text-center">
-                All 3 stages completed · 2m 44s total time
-            </p>
-        </div>
-
-        <!-- ══ STATS ROW ══ -->
-        <div class="fu3 w-full max-w-2xl grid grid-cols-2 md:grid-cols-4 border border-g mb-6 relative z-10">
-            <div class="px-6 py-5 border-r border-g">
-                <div class="text-2xl font-extrabold tracking-tight">3<span class="text-[#00ff41]">/3</span></div>
-                <div class="mono text-[#333] text-[10px] tracking-widest uppercase mt-1">Stages Passed</div>
-            </div>
-            <div class="px-6 py-5 border-r border-g">
-                <div class="text-2xl font-extrabold tracking-tight text-[#00ff41]">87<span
-                        class="text-[#444] text-lg">%</span></div>
-                <div class="mono text-[#333] text-[10px] tracking-widest uppercase mt-1">Accuracy</div>
-            </div>
-            <div class="px-6 py-5 border-r border-g">
-                <div class="text-2xl font-extrabold tracking-tight">2<span class="text-[#444] text-lg">m</span> 44<span
-                        class="text-[#444] text-lg">s</span></div>
-                <div class="mono text-[#333] text-[10px] tracking-widest uppercase mt-1">Total Time</div>
-            </div>
-            <div class="px-6 py-5">
-                <div class="text-2xl font-extrabold tracking-tight">1<span class="text-[#444] text-lg">st</span></div>
-                <div class="mono text-[#333] text-[10px] tracking-widest uppercase mt-1">Attempt</div>
+                <div class="mono text-[#333] text-[10px] tracking-widest uppercase mt-1">/ 100</div>
             </div>
         </div>
 
-        <!-- ══ STAGE BREAKDOWN ══ -->
-        <div class="fu4 w-full max-w-2xl bg-[#0a0a0a] border border-g card-line relative z-10 mb-6">
+        <h1 class="font-extrabold tracking-tight text-center leading-tight mb-2"
+            style="font-size:clamp(1.8rem,4vw,3rem)">
+            You're <span [style.color]="verdict.color" class="">
+                {{ score === 100 ? 'Human.' : 'a Robot.' }}
+            </span>
+        </h1>
+        <p class="mono text-[#444] text-sm tracking-wide text-center">
+            All {{ attempt.totalStages }} stages completed · {{ totalTime }} total time
+        </p>
+    </div>
 
-            <div class="flex items-center justify-between px-6 md:px-8 py-5 border-b border-g">
-                <span class="mono text-[#00ff41] text-xs tracking-widest uppercase">// Stage Breakdown</span>
-                <span class="mono text-[#333] text-[10px] tracking-widest">4 challenges</span>
+    <!-- STATS ROW -->
+    <div class="fu3 w-full max-w-2xl grid grid-cols-2 md:grid-cols-4 border border-g mb-6 relative z-10">
+        <div class="px-6 py-5 border-r border-g">
+            <div class="text-2xl font-extrabold tracking-tight">
+                {{ passedCount }}<span class="text-[#00ff41]">/{{ attempt.totalStages }}</span>
             </div>
+            <div class="mono text-[#333] text-[10px] tracking-widest uppercase mt-1">Stages Passed</div>
+        </div>
+        <div class="px-6 py-5 border-r border-g">
+            <div class="text-2xl font-extrabold tracking-tight text-[#00ff41]">
+                {{ score }}<span class="text-[#444] text-lg">%</span>
+            </div>
+            <div class="mono text-[#333] text-[10px] tracking-widest uppercase mt-1">Accuracy</div>
+        </div>
+        <div class="px-6 py-5 border-r border-g">
+            <div class="text-2xl font-extrabold tracking-tight">{{ totalTime }}</div>
+            <div class="mono text-[#333] text-[10px] tracking-widest uppercase mt-1">Total Time</div>
+        </div>
+        <div class="px-6 py-5">
+            <div class="text-2xl font-extrabold tracking-tight">
+                1<span class="text-[#444] text-lg">st</span>
+            </div>
+            <div class="mono text-[#333] text-[10px] tracking-widest uppercase mt-1">Attempt</div>
+        </div>
+    </div>
 
-            <div class="px-6 md:px-8 py-2 divide-y divide-[rgba(0,255,65,0.07)]">
+    <!-- STAGE BREAKDOWN -->
+    <div class="fu4 w-full max-w-2xl bg-[#0a0a0a] border border-g card-line relative z-10 mb-6">
+        <div class="flex items-center justify-between px-6 md:px-8 py-5 border-b border-g">
+            <span class="mono text-[#00ff41] text-xs tracking-widest uppercase">// Stage Breakdown</span>
+            <span class="mono text-[#333] text-[10px] tracking-widest">{{ attempt.totalStages }} challenges</span>
+        </div>
 
-                <!-- Stage 1 -->
-                <div class="stage-row py-5 flex flex-col gap-3">
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center gap-3">
-                            <span class="mono text-[10px] border border-[#00ff41] text-[#00ff41]
-                           w-6 h-6 flex items-center justify-center">01</span>
-                            <div>
-                                <div class="font-semibold text-sm">Image Selection</div>
-                                <div class="mono text-[#333] text-[10px] tracking-wider mt-0.5">Select all traffic
-                                    lights</div>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <span class="mono text-[#333] text-xs">0m 58s</span>
-                            <span
-                                class="badge-pass border mono text-[10px] tracking-widest uppercase px-2.5 py-0.5">Passed</span>
+        <div class="px-6 md:px-8 py-2 divide-y divide-[rgba(0,255,65,0.07)]">
+            @for (stage of stages; track stage.index) {
+            <div class="stage-row py-5 flex flex-col gap-3">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <span class="mono text-[10px] border border-[#00ff41] text-[#00ff41]
+                             w-6 h-6 flex items-center justify-center">
+                            {{ stage.index.toString().padStart(2, '0') }}
+                        </span>
+                        <div>
+                            <div class="font-semibold text-sm">{{ stage.title }}</div>
+                            <div class="mono text-[#333] text-[10px] tracking-wider mt-0.5">{{ stage.subtitle }}</div>
                         </div>
                     </div>
                     <div class="flex items-center gap-3">
-                        <div class="flex-1 h-px bg-[#0f0f0f]">
-                            <div class="bar-expand bar-expand-1 h-px bg-[#00ff41]" style="width:100%"></div>
-                        </div>
-                        <span class="mono text-[#00ff41] text-[10px] w-8 text-right">100%</span>
+                        <span class="mono text-[#333] text-xs">{{ stage.time }}</span>
+                        <span class="border mono text-[10px] tracking-widest uppercase px-2.5 py-0.5"
+                            [class.badge-pass]="stage.status === 'passed'"
+                            [class.badge-fail]="stage.status === 'failed'">
+                            {{ stage.status }}
+                        </span>
                     </div>
                 </div>
-
-                <!-- Stage 2 -->
-                <div class="stage-row py-5 flex flex-col gap-3">
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center gap-3">
-                            <span class="mono text-[10px] border border-[#00ff41] text-[#00ff41]
-                           w-6 h-6 flex items-center justify-center">02</span>
-                            <div>
-                                <div class="font-semibold text-sm">Math Challenge</div>
-                                <div class="mono text-[#333] text-[10px] tracking-wider mt-0.5">Solve the equation</div>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <span class="mono text-[#333] text-xs">0m 34s</span>
-                            <span
-                                class="badge-pass border mono text-[10px] tracking-widest uppercase px-2.5 py-0.5">Passed</span>
-                        </div>
+                <div class="flex items-center gap-3">
+                    <div class="flex-1 h-px bg-[#0f0f0f]">
+                        <div class="bar-expand h-px bg-[#00ff41]" [style.width.%]="stage.accuracy"></div>
                     </div>
-                    <div class="flex items-center gap-3">
-                        <div class="flex-1 h-px bg-[#0f0f0f]">
-                            <div class="bar-expand bar-expand-2 h-px bg-[#00ff41]" style="width:100%"></div>
-                        </div>
-                        <span class="mono text-[#00ff41] text-[10px] w-8 text-right">100%</span>
-                    </div>
-                </div>
-
-                <!-- Stage 3 -->
-                <div class="stage-row py-5 flex flex-col gap-3">
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center gap-3">
-                            <span class="mono text-[10px] border border-[#00ff41] text-[#00ff41]
-                           w-6 h-6 flex items-center justify-center">03</span>
-                            <div>
-                                <div class="font-semibold text-sm">Text Verification</div>
-                                <div class="mono text-[#333] text-[10px] tracking-wider mt-0.5">Type the characters
-                                    shown</div>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <span class="mono text-[#333] text-xs">1m 12s</span>
-                            <span
-                                class="badge-pass border mono text-[10px] tracking-widest uppercase px-2.5 py-0.5">Passed</span>
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-3">
-                        <div class="flex-1 h-px bg-[#0f0f0f]">
-                            <div class="bar-expand bar-expand-3 h-px bg-[#00ff41]" style="width:75%"></div>
-                        </div>
-                        <span class="mono text-[#00ff41] text-[10px] w-8 text-right">75%</span>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-        <!-- ══ TERMINAL LOG ══ -->
-        <div class="fu5 w-full max-w-2xl bg-[#0a0a0a] border border-g card-line relative z-10 mb-8">
-            <div class="flex items-center justify-between px-6 md:px-8 py-4 border-b border-g">
-                <span class="mono text-[#00ff41] text-xs tracking-widest uppercase">// session log</span>
-                <div class="flex items-center gap-1.5">
-                    <span class="w-2.5 h-2.5 rounded-full bg-[#ff0040] opacity-50"></span>
-                    <span class="w-2.5 h-2.5 rounded-full bg-[#ffaa00] opacity-50"></span>
-                    <span class="w-2.5 h-2.5 rounded-full bg-[#00ff41] opacity-50"></span>
+                    <span class="mono text-[#00ff41] text-[10px] w-8 text-right">{{ stage.accuracy }}%</span>
                 </div>
             </div>
-            <div class="px-6 md:px-8 py-4 mono text-xs space-y-2 leading-relaxed">
-                <div class="flex gap-3">
-                    <span class="text-[#2a2a2a] shrink-0">00:00:00</span>
-                    <span class="text-[#555]">SESSION</span>
-                    <span class="text-[#f0f0f0]">Challenge initialized. 3 stages queued.</span>
-                </div>
-                <div class="flex gap-3">
-                    <span class="text-[#2a2a2a] shrink-0">00:00:58</span>
-                    <span class="text-[#555]">STAGE 01</span>
-                    <span class="text-[#00ff41]">PASSED — 3/3 correct selections</span>
-                </div>
-                <div class="flex gap-3">
-                    <span class="text-[#2a2a2a] shrink-0">00:01:32</span>
-                    <span class="text-[#555]">STAGE 02</span>
-                    <span class="text-[#00ff41]">PASSED — Correct answer: 56</span>
-                </div>
-                <div class="flex gap-3">
-                    <span class="text-[#2a2a2a] shrink-0">00:02:44</span>
-                    <span class="text-[#555]">STAGE 03</span>
-                    <span class="text-[#00ff41]">PASSED — 2 attempts · "X4K9mP" matched</span>
-                </div>
-                <div class="flex gap-3 pt-1 border-t border-[rgba(0,255,65,0.06)]">
-                    <span class="text-[#2a2a2a] shrink-0">00:02:44</span>
-                    <span class="text-[#00ff41]">RESULT</span>
-                    <span class="text-[#00ff41] font-bold">HUMAN VERIFIED — Score: 87/100</span>
-                </div>
-                <div class="flex gap-3">
-                    <span class="text-[#2a2a2a] shrink-0">00:02:44</span>
-                    <span class="text-[#00ff41]">$</span>
-                    <span class="text-[#00ff41]">Session ended<span class="blink">_</span></span>
-                </div>
+            }
+        </div>
+    </div>
+
+    <!-- TERMINAL LOG -->
+    <div class="fu5 w-full max-w-2xl bg-[#0a0a0a] border border-g card-line relative z-10 mb-8">
+        <div class="flex items-center justify-between px-6 md:px-8 py-4 border-b border-g">
+            <span class="mono text-[#00ff41] text-xs tracking-widest uppercase">// session log</span>
+            <div class="flex items-center gap-1.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-[#ff0040] opacity-50"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-[#ffaa00] opacity-50"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-[#00ff41] opacity-50"></span>
             </div>
         </div>
+        <div class="px-6 md:px-8 py-4 mono text-xs space-y-2 leading-relaxed">
 
-        <!-- ══ ACTIONS ══ -->
-        <div class="fu6 flex flex-wrap items-center justify-center gap-4 relative z-10">
-            <a href="captcha.html" class="glow-btn mono bg-[#00ff41] text-[#080808] font-bold
-                text-sm tracking-widest uppercase px-8 py-3.5 inline-block">
-                ↺ Restart Challenge
-            </a>
-            <a href="index.html" class="mono border border-g text-[#555] font-bold
-                text-sm tracking-widest uppercase px-8 py-3.5 inline-block
-                hover:text-[#00ff41] hover:border-[#00ff41] transition-colors">
-                ← Back to Home
-            </a>
+            <div class="flex gap-3">
+                <span class="text-[#2a2a2a] shrink-0">00:00:00</span>
+                <span class="text-[#555]">SESSION</span>
+                <span class="text-[#f0f0f0]">Challenge initialized. {{ attempt.totalStages }} stages queued.</span>
+            </div>
+
+            @for (stage of stages; track stage.index) {
+            <div class="flex gap-3">
+                <span class="text-[#2a2a2a] shrink-0">{{ stage.logTime }}</span>
+                <span class="text-[#555]">STAGE {{ stage.index.toString().padStart(2, '0') }}</span>
+                <span [class.text-\[#00ff41\]]="stage.status === 'passed'"
+                    [class.text-\[#ff0040\]]="stage.status === 'failed'">
+                    {{ stage.logMessage }}
+                </span>
+            </div>
+            }
+
+            <div class="flex gap-3 pt-1 border-t border-[rgba(0,255,65,0.06)]">
+                <span class="text-[#2a2a2a] shrink-0">{{ finishedTime }}</span>
+                <span class="text-[#00ff41]">RESULT</span>
+                <span class="font-bold" [style.color]="verdict.color">
+                    {{ score === 100 ? 'HUMAN VERIFIED' : 'BOT DETECTED' }} — Score: {{ score }}/100
+                </span>
+            </div>
+            <div class="flex gap-3">
+                <span class="text-[#2a2a2a] shrink-0">{{ finishedTime }}</span>
+                <span class="text-[#00ff41]">$</span>
+                <span class="text-[#00ff41]">Session ended<span class="blink">_</span></span>
+            </div>
+
         </div>
+    </div>
 
-    </main>
+    <!-- ACTIONS -->
+    <div class="fu6 flex flex-wrap items-center justify-center gap-4 relative z-10">
+        <button (click)="onRestart()" class="glow-btn mono bg-[#00ff41] text-[#080808] font-bold
+              text-sm tracking-widest uppercase px-8 py-3.5">
+            ↺ Restart Challenge
+        </button>
+        <a routerLink="/" class="mono border border-g text-[#555] font-bold
+              text-sm tracking-widest uppercase px-8 py-3.5 inline-block
+              hover:text-[#00ff41] hover:border-[#00ff41] transition-colors">
+            ← Back to Home
+        </a>
+    </div>
 
-    <!-- ══ FOOTER ══ -->
-    <app-footer></app-footer>
+</main>
 
+<app-footer />
 </div>

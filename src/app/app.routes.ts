@@ -1,30 +1,30 @@
 import { Routes } from '@angular/router';
+import { challengeGuard } from './core/guards/challenge.guard';
+import { resultGuard } from './core/guards/result.guard';
 
 export const routes: Routes = [
-  // Default route
   { path: '', pathMatch: 'full', redirectTo: 'home' },
 
-  // Pages
   {
     path: 'home',
     loadComponent: () =>
       import('./features/home/home.component').then(m => m.HomeComponent),
+
   },
   {
     path: 'captcha',
     loadComponent: () =>
       import('./features/captcha/captcha.component').then(m => m.CaptchaComponent),
+    canActivate: [challengeGuard]
   },
 
-  // Result must be protected (no direct access)
   {
     path: 'result',
-    // canActivate: [captchaCompleteGuard],
+    canActivate: [resultGuard],
     loadComponent: () =>
       import('./features/result/result.component').then(m => m.ResultComponent),
   },
 
-  // 404 (always last)
   {
     path: '**',
     loadComponent: () =>

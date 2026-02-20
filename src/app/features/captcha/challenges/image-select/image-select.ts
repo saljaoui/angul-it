@@ -49,7 +49,6 @@ export class ImageSelect implements OnInit {
     const attempt = this.state.getAttempt();
     const previous = attempt?.answers.find(a => a.stage === attempt.currentStage);
 
-    // ✅ check the type first so TypeScript knows it's ImageSelectAnswer
     if (previous?.data.type === 'image-select') {
       previous.data.selectedIndexes.forEach(i => {
         this.cells[i].selected = true;

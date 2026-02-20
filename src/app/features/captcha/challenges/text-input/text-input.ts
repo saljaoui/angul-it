@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, inject, OnInit, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ChallengeAnswer } from '../../../../core/models/attempt.model';
+import { StateService } from '../../../../core/services/state.service';
 
 @Component({
   selector: 'app-text-input',
@@ -8,12 +9,21 @@ import { ChallengeAnswer } from '../../../../core/models/attempt.model';
   templateUrl: './text-input.html',
   styleUrl: './text-input.scss',
 })
-export class TextInput {
+export class TextInput implements OnInit {
   @Output() completed = new EventEmitter<ChallengeAnswer>();
+  private state = inject(StateService);
 
   readonly expected = 'X4K9mP';
   typed = '';
 
+  ngOnInit(): void {
+    const attempt = this.state.getAttempt();
+    const previous = attempt?.answers.find(a => a.stage === attempt.currentStage);
+
+    if (previous?.data.type === 'text-input') {
+      this.typed = previous.data.typed;
+    }
+  }
   get isValid(): boolean {
     return this.typed.trim().length > 0;
   }

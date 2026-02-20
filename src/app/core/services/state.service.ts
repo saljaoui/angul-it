@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Attempt, ChallengeType } from '../models/attempt.model';
+import { Attempt, ChallengeAnswer, ChallengeType } from '../models/attempt.model';
 
 @Injectable({ providedIn: 'root' })
 export class StateService {
@@ -24,6 +24,29 @@ export class StateService {
   getAttempt(): Attempt | null {
     const raw = localStorage.getItem(this.STORAGE_KEY);
     return raw ? (JSON.parse(raw) as Attempt) : null;
+  }
+
+  advanceStage(answer: ChallengeAnswer): Attempt | null {
+    const attempt = this.getAttempt();
+    if (!attempt) {
+      return null;
+    }
+
+    attempt.answers = [...attempt.answers, answer];
+
+    if (answer.correct) {
+      const increment = Math.round(100 / attempt.totalStages);
+      attempt.score = Math.min(100, attempt.score + increment);
+    }
+
+    if (attempt.currentStage < attempt.totalStages - 1) {
+      attempt.currentStage += 1;
+    } else {
+      attempt.status = 'finished';
+    }
+
+    localStorage.setItem(this.STORAGE_KEY, JSON.stringify(attempt));
+    return attempt;
   }
 
   clearAttempt(): void {

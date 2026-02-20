@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { ChallengeAnswer } from '../../../../core/models/attempt.model';
 import { FormsModule } from '@angular/forms';
 
 type CellType = 'traffic-light' | 'other';
@@ -16,6 +17,8 @@ interface Cell {
   styleUrl: './image-select.scss',
 })
 export class ImageSelect {
+  @Output() completed = new EventEmitter<ChallengeAnswer>();
+
   prompt = 'traffic light';
 
   cellsTrue: Cell[] = [
@@ -44,5 +47,35 @@ export class ImageSelect {
 
   toggle(cell: Cell) {
     cell.selected = !cell.selected;
+  }
+
+  get isValid(): boolean {
+    return this.cells.some((cell) => cell.selected);
+  }
+
+  submit(): void {
+    const selectedIndexes = this.cells
+      .map((cell, index) => (cell.selected ? index : -1))
+      .filter((index) => index !== -1);
+    const correctIndexes = this.cellsTrue
+      .map((cell, index) => (cell.selected ? index : -1))
+      .filter((index) => index !== -1);
+    const correct =
+      selectedIndexes.length === correctIndexes.length &&
+      selectedIndexes.every((index) => correctIndexes.includes(index));
+
+    this.completed.emit({
+      challengeId: crypto.randomUUID(),
+      type: 'image-select',
+      status: correct ? 'passed' : 'failed',
+      correct,
+      attempts: 1,
+      answeredAt: new Date().toISOString(),
+      data: {
+        type: 'image-select',
+        selectedIndexes,
+        correctIndexes,
+      },
+    });
   }
 }

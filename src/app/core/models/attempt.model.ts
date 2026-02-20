@@ -1,4 +1,4 @@
-export type ChallengeType   = 'image-select' | 'math-equation' | 'text-input' | 'puzzle';
+export type ChallengeType   = 'image-select' | 'math-equation' | 'text-input';
 export type AttemptStatus   = 'started' | 'finished';
 export type AnswerStatus    = 'passed' | 'failed';   // ✅ only for ChallengeAnswer
 export type StageStatus     = 'locked' | 'active' | 'passed' | 'failed'; // ✅ if you need it for UI
@@ -6,9 +6,8 @@ export type StageStatus     = 'locked' | 'active' | 'passed' | 'failed'; // ✅ 
 export interface ImageSelectAnswer  { type: 'image-select';  selectedIndexes: number[]; correctIndexes: number[]; }
 export interface MathEquationAnswer { type: 'math-equation'; selectedOption: number;    correctOption: number;    timeRemainingSeconds: number; }
 export interface TextInputAnswer    { type: 'text-input';    typed: string;             expected: string; }
-export interface PuzzleAnswer       { type: 'puzzle';        completed: boolean;        timeRemainingSeconds: number; }
 
-export type AnswerData = ImageSelectAnswer | MathEquationAnswer | TextInputAnswer | PuzzleAnswer;
+export type AnswerData = ImageSelectAnswer | MathEquationAnswer | TextInputAnswer;
 
 export interface ChallengeAnswer {
   challengeId: string;

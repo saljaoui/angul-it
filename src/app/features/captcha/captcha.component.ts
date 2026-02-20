@@ -7,11 +7,10 @@ import { Attempt, ChallengeAnswer, ChallengeType } from '../../core/models/attem
 import { ImageSelect } from './challenges/image-select/image-select';
 import { MathEquation } from './challenges/math-equation/math-equation';
 import { TextInput } from './challenges/text-input/text-input';
-import { Puzzle } from './challenges/puzzle/puzzle';
 
 @Component({
   selector: 'app-captcha',
-  imports: [Footer, RouterLink, DecimalPipe, ImageSelect, MathEquation, TextInput, Puzzle],
+  imports: [Footer, RouterLink, DecimalPipe, ImageSelect, MathEquation, TextInput],
   templateUrl: './captcha.html',
   styleUrl: './captcha.scss',
 })
@@ -27,13 +26,11 @@ export class CaptchaComponent implements OnInit {
     'image-select': 'Select all matching images',
     'math-equation': 'Solve the equation',
     'text-input': 'Type the characters shown',
-    'puzzle': 'Complete the puzzle',
   };
 
   @ViewChild(ImageSelect) imageSelect!: ImageSelect;
   @ViewChild(MathEquation) mathEquation!: MathEquation;
   @ViewChild(TextInput) textInput!: TextInput;
-  @ViewChild(Puzzle) puzzle!: Puzzle;
 
   // --- Computed Values ---
 
@@ -43,7 +40,6 @@ export class CaptchaComponent implements OnInit {
     if (this.currentChallenge === 'image-select')  return this.imageSelect?.isValid  ?? false;
     if (this.currentChallenge === 'math-equation') return this.mathEquation?.isValid ?? false;
     if (this.currentChallenge === 'text-input')    return this.textInput?.isValid    ?? false;
-    if (this.currentChallenge === 'puzzle')        return this.puzzle?.isValid       ?? false;
     return false;
   }
 
@@ -79,7 +75,6 @@ export class CaptchaComponent implements OnInit {
     if (this.currentChallenge === 'image-select')  this.imageSelect.submit();
     if (this.currentChallenge === 'math-equation') this.mathEquation.submit();
     if (this.currentChallenge === 'text-input')    this.textInput.submit();
-    if (this.currentChallenge === 'puzzle')        this.puzzle.submit();
   }
 
   // Called when user clicks the "Previous" button

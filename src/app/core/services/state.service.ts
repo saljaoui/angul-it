@@ -10,7 +10,7 @@ export class StateService {
       id: crypto.randomUUID(),
       status: 'started',
       currentStage: 0,
-      totalStages: 4,
+      totalStages: 3,
       score: 0,
       startedAt: new Date().toISOString(),
       finishedAt: null,
@@ -76,7 +76,6 @@ export class StateService {
       'image-select',
       'math-equation',
       'text-input',
-      'puzzle',
     ];
 
     return challenges;

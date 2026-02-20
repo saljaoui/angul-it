@@ -22,4 +22,9 @@ export class CaptchaComponent implements OnInit {
     this.attempt = this.state.getAttempt();
     console.log(this.attempt);
   }
+
+progress(): number {
+  const p = this.attempt?.score ?? 0;
+  return p;
+}
 }

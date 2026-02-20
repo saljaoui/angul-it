@@ -81,9 +81,7 @@
 }
 
 /* progress bar */
-.prog-fill {
-    animation: fill-bar 1s .5s ease both;
-}
+.prog-fill { transition: width 500ms ease; }
 
 /* image grid cell */
 .img-cell {

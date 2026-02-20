@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrl: './math-equation.scss',
 })
 export class MathEquation {
-
+  
 }

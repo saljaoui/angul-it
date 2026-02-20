@@ -3,10 +3,14 @@ import { Footer } from '../../shared/footer/footer';
 import { RouterLink } from '@angular/router';
 import { StateService } from '../../core/services/state.service';
 import { Attempt } from '../../core/models/attempt.model';
+import { ImageSelect } from './challenges/image-select/image-select';
+import { MathEquation } from './challenges/math-equation/math-equation';
+import { TextInput } from './challenges/text-input/text-input';
+import { Puzzle } from './challenges/puzzle/puzzle';
 
 @Component({
   selector: 'app-captcha',
-  imports: [Footer, RouterLink],
+  imports: [Footer, RouterLink, ImageSelect, MathEquation, TextInput, Puzzle],
   templateUrl: './captcha.html',
   styleUrl: './captcha.scss',
 })

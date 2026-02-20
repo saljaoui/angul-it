@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Navbar } from '../../shared/navbar/navbar';
 import { Footer } from '../../shared/footer/footer';
 import { RouterLink } from '@angular/router';
+import { StateService } from '../../core/services/state.service';
 
 @Component({
   selector: 'app-home',
@@ -11,5 +12,9 @@ import { RouterLink } from '@angular/router';
 })
 
 export class HomeComponent {
+  private state = inject(StateService)
 
+  startChallenge() {
+    this.state.createNewAttempt();
+  }
 }

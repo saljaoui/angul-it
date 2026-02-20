@@ -33,6 +33,7 @@ export class TextInput {
         typed: trimmed,
         expected: this.expected,
       },
+      stage:2,
     });
   }
 }

@@ -13,6 +13,7 @@ export class StateService {
       totalStages: 4,
       score: 0,
       startedAt: new Date().toISOString(),
+      finishedAt: null,
       challengeOrder: this.generateChallengeOrder(),
       answers: [],
     };
@@ -26,23 +27,40 @@ export class StateService {
     return raw ? (JSON.parse(raw) as Attempt) : null;
   }
 
+  goToPreviousStage(): Attempt | null {
+    const attempt = this.getAttempt();
+    if (!attempt || attempt.currentStage === 0) return null;
+
+    attempt.currentStage -= 1;
+
+    // ✅ don't delete the answer — keep it for pre-filling
+    const correctCount = attempt.answers.filter(a => a.correct).length;
+    attempt.score = Math.round((correctCount / attempt.totalStages) * 100);
+
+    localStorage.setItem(this.STORAGE_KEY, JSON.stringify(attempt));
+    return attempt;
+  }
+
   advanceStage(answer: ChallengeAnswer): Attempt | null {
     const attempt = this.getAttempt();
-    if (!attempt) {
-      return null;
+    if (!attempt) return null;
+
+    // ✅ replace existing answer for this stage instead of pushing a duplicate
+    const existingIndex = attempt.answers.findIndex(a => a.stage === attempt.currentStage);
+    if (existingIndex !== -1) {
+      attempt.answers[existingIndex] = answer; // replace
+    } else {
+      attempt.answers = [...attempt.answers, answer]; // add new
     }
 
-    attempt.answers = [...attempt.answers, answer];
-
-    if (answer.correct) {
-      const increment = Math.round(100 / attempt.totalStages);
-      attempt.score = Math.min(100, attempt.score + increment);
-    }
+    const correctCount = attempt.answers.filter(a => a.correct).length;
+    attempt.score = Math.round((correctCount / attempt.totalStages) * 100);
 
     if (attempt.currentStage < attempt.totalStages - 1) {
       attempt.currentStage += 1;
     } else {
       attempt.status = 'finished';
+      attempt.finishedAt = new Date().toISOString();
     }
 
     localStorage.setItem(this.STORAGE_KEY, JSON.stringify(attempt));
@@ -60,7 +78,7 @@ export class StateService {
       'text-input',
       'puzzle',
     ];
-    
+
     return challenges;
   }
 }

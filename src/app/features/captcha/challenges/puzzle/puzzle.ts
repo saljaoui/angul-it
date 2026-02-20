@@ -34,6 +34,7 @@ export class Puzzle {
         completed: this.sliderComplete,
         timeRemainingSeconds: 0,
       },
+      stage: 3
     });
   }
 

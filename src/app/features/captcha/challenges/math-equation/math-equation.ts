@@ -30,6 +30,7 @@ export class MathEquation {
       status: correct ? 'passed' : 'failed',
       correct,
       attempts: 1,
+      stage: 0,
       answeredAt: new Date().toISOString(),
       data: {
         type: 'math-equation',

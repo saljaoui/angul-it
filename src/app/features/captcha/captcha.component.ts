@@ -16,77 +16,101 @@ import { Puzzle } from './challenges/puzzle/puzzle';
   styleUrl: './captcha.scss',
 })
 export class CaptchaComponent implements OnInit {
+  
   private state = inject(StateService);
-  private router = inject(Router);
+  private router = inject(Router);    
 
-  // ← fixes "Property 'currentChallenge' does not exist"
   currentChallenge!: ChallengeType;
   attempt!: Attempt;
 
-  // ← fixes "Element implicitly has 'any' type" for challengeTitles
   challengeTitles: Record<ChallengeType, string> = {
     'image-select': 'Select all matching images',
     'math-equation': 'Solve the equation',
     'text-input': 'Type the characters shown',
-    'puzzle': 'Complete the puzzle'
+    'puzzle': 'Complete the puzzle',
   };
 
-  // ViewChild refs for calling submit() on each child
   @ViewChild(ImageSelect) imageSelect!: ImageSelect;
   @ViewChild(MathEquation) mathEquation!: MathEquation;
   @ViewChild(TextInput) textInput!: TextInput;
   @ViewChild(Puzzle) puzzle!: Puzzle;
 
-  // ← fixes "Property 'canProceed' does not exist"
+  // --- Computed Values ---
+
+  // Is the current challenge answered correctly?
+  // We ask the child component directly using ViewChild
   get canProceed(): boolean {
-    switch (this.currentChallenge) {
-      case 'image-select': return this.imageSelect?.isValid ?? false;
-      case 'math-equation': return this.mathEquation?.isValid ?? false;
-      case 'text-input': return this.textInput?.isValid ?? false;
-      case 'puzzle': return this.puzzle?.isValid ?? false;
-      default: return false;
-    }
+    if (this.currentChallenge === 'image-select')  return this.imageSelect?.isValid  ?? false;
+    if (this.currentChallenge === 'math-equation') return this.mathEquation?.isValid ?? false;
+    if (this.currentChallenge === 'text-input')    return this.textInput?.isValid    ?? false;
+    if (this.currentChallenge === 'puzzle')        return this.puzzle?.isValid       ?? false;
+    return false;
   }
 
-  // ← fixes "Property 'progress' does not exist"
   get progress(): number {
     return Math.round((this.attempt.currentStage / this.attempt.totalStages) * 100);
   }
 
+  // --- Lifecycle ---
+
+  // ngOnInit runs once when the page loads
   ngOnInit(): void {
+    // Try to load a saved attempt from localStorage
+    const attempt = this.state.getAttempt();
+
+    if (!attempt) {
+      this.router.navigate(['/']);
+      return;
+    }
+
+    // Save attempt to our variable and figure out which challenge to show
+    this.attempt = attempt;
+    this.currentChallenge = this.attempt.challengeOrder[this.attempt.currentStage];
+  }
+
+  // --- Button Handlers ---
+
+  // Called when user clicks the "Next" button
+  onNext(): void {
+    // Don't do anything if the challenge isn't completed yet
+    if (!this.canProceed) return;
+
+    // Tell the correct child component to submit its answer
+    if (this.currentChallenge === 'image-select')  this.imageSelect.submit();
+    if (this.currentChallenge === 'math-equation') this.mathEquation.submit();
+    if (this.currentChallenge === 'text-input')    this.textInput.submit();
+    if (this.currentChallenge === 'puzzle')        this.puzzle.submit();
+  }
+
+  // Called when user clicks the "Previous" button
+  onPrevious(): void {
+    // Can't go back if we're already on the first stage
+    if (this.attempt.currentStage === 0) return;
+
+    // Tell the service to go back one stage (it saves to localStorage too)
+    this.state.goToPreviousStage();
+
+    // Reload the attempt and update which challenge to show
     this.attempt = this.state.getAttempt()!;
     this.currentChallenge = this.attempt.challengeOrder[this.attempt.currentStage];
   }
 
-  // ← fixes "Property 'onNext' does not exist"
-  onNext(): void {
-    switch (this.currentChallenge) {
-      case 'image-select': this.imageSelect.submit(); break;
-      case 'math-equation': this.mathEquation.submit(); break;
-      case 'text-input': this.textInput.submit(); break;
-      case 'puzzle': this.puzzle.submit(); break;
-    }
-  }
-
-  // ← fixes "Property 'onPrevious' does not exist"
-  onPrevious(): void {
-    if (this.attempt.currentStage > 0) {
-      this.attempt.currentStage--;
-      this.currentChallenge = this.attempt.challengeOrder[this.attempt.currentStage];
-    }
-  }
-
-  // ← fixes "Property 'onStageComplete' does not exist"
+  // Called by a child component when the user completes a challenge
+  // The child emits (completed) event with the answer data
   onStageComplete(answer: ChallengeAnswer): void {
-    
+    // Save the answer and advance the stage in localStorage
     this.state.advanceStage(answer);
+
+    // Reload the attempt to get the updated stage number and status
     this.attempt = this.state.getAttempt()!;
 
+    // If all stages are done, go to the results page
     if (this.attempt.status === 'finished') {
       this.router.navigate(['/result']);
       return;
     }
 
+    // Otherwise, show the next challenge
     this.currentChallenge = this.attempt.challengeOrder[this.attempt.currentStage];
   }
 }

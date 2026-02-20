@@ -5,8 +5,9 @@ import { FormsModule } from '@angular/forms';
 
 interface Cell {
   id: string;
-  isTarget: boolean; // true = correct answer
+  isTarget: boolean;
   selected: boolean;
+  image: string;
 }
 
 @Component({
@@ -23,15 +24,15 @@ export class ImageSelect implements OnInit {
   prompt = 'traffic light';
 
   cells: Cell[] = [
-    { id: 'c1', isTarget: true, selected: false },
-    { id: 'c2', isTarget: false, selected: false },
-    { id: 'c3', isTarget: false, selected: false },
-    { id: 'c4', isTarget: false, selected: false },
-    { id: 'c5', isTarget: true, selected: false },
-    { id: 'c6', isTarget: false, selected: false },
-    { id: 'c7', isTarget: false, selected: false },
-    { id: 'c8', isTarget: false, selected: false },
-    { id: 'c9', isTarget: true, selected: false },
+    { id: 'c1', isTarget: true, selected: false, image: '/images/traffic-light-1.jpg' },
+    { id: 'c2', isTarget: false, selected: false, image: '/images/car-1.jpg' },
+    { id: 'c3', isTarget: false, selected: false, image: '/images/road-1.jpg' },
+    { id: 'c4', isTarget: false, selected: false, image: '/images/car-2.jpg' },
+    { id: 'c5', isTarget: true, selected: false, image: '/images/traffic-light-2.jpg' },
+    { id: 'c6', isTarget: false, selected: false, image: '/images/road-2.jpg' },
+    { id: 'c7', isTarget: false, selected: false, image: '/images/car-3.jpg' },
+    { id: 'c8', isTarget: false, selected: false, image: '/images/road-3.jpg' },
+    { id: 'c9', isTarget: true, selected: false, image: '/images/traffic-light-3.jpg' },
   ];
 
   // ✅ correct indexes are just cells where isTarget is true

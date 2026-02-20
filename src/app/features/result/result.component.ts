@@ -72,12 +72,6 @@ export class ResultComponent implements OnInit {
     this.stages = this.attempt.answers.map((a, i) => this.buildStageRow(a, i));
   }
 
-  onRestart(): void {
-    this.state.clearAttempt();
-    this.state.createNewAttempt();
-    this.router.navigate(['/captcha']);
-  }
-
   private buildStageRow(answer: ChallengeAnswer, i: number): StageRow {
     const stageLabels: Record<string, { title: string; subtitle: string }> = {
       'image-select': { title: 'Image Selection', subtitle: 'Select all matching images' },

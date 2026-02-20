@@ -67,10 +67,6 @@ export class StateService {
     return attempt;
   }
 
-  clearAttempt(): void {
-    localStorage.removeItem(this.STORAGE_KEY);
-  }
-
   private generateChallengeOrder(): ChallengeType[] {
     const challenges: ChallengeType[] = [
       'image-select',

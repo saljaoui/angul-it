@@ -23,7 +23,7 @@
         <div
           class="cell-inner"
           [class.is-selected]="cell.selected">
-          <!-- put your svg here based on cell.type -->
+          <img [src]="cell.image" [alt]="cell.id" class="w-full h-full object-cover" />
         </div>
       </div>
     }

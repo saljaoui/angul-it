@@ -1,47 +1,28 @@
 <div class="fu3 flex flex-col items-center gap-6">
-    <div class="mono text-[#555] text-xs tracking-widest uppercase">Select the correct answer</div>
+  <div class="mono text-[#555] text-xs tracking-widest uppercase">Select the correct answer</div>
 
-    <!-- equation display -->
-    <div class="border border-g bg-[#080808] px-10 py-6 text-center relative overflow-hidden w-full">
-        <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#00ff41]/30 to-transparent">
-        </div>
-        <div class="mono text-[#00ff41] glow-text font-bold"
-            style="font-size:clamp(1.8rem,5vw,3rem); letter-spacing:.05em">
-            17 × 4 − 12 = ?
-        </div>
-        <div class="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#00ff41]/30 to-transparent">
-        </div>
+  <!-- equation display -->
+  <div class="border border-g bg-[#080808] px-10 py-6 text-center relative overflow-hidden w-full">
+    <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#00ff41]/30 to-transparent"></div>
+
+    <!-- ✅ driven by question.display -->
+    <div class="mono text-[#00ff41] glow-text font-bold"
+      style="font-size:clamp(1.8rem,5vw,3rem); letter-spacing:.05em">
+      {{ question.display }}
     </div>
 
-    <!-- answer options -->
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 w-full">
+    <div class="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#00ff41]/30 to-transparent"></div>
+  </div>
 
-        <div class="math-opt relative rounded-none">
-            <label class="px-4 py-5">
-                <input type="radio" name="math-ans" [value]="55" [(ngModel)]="selectedOption" />
-                <span class="mono font-bold text-[#555] text-lg">55</span>
-            </label>
-        </div>
-
-        <div class="math-opt relative rounded-none">
-            <label class="px-4 py-5">
-                <input type="radio" name="math-ans" [value]="56" [(ngModel)]="selectedOption" />
-                <span class="mono font-bold text-[#555] text-lg">56</span>
-            </label>
-        </div>
-
-        <div class="math-opt relative rounded-none">
-            <label class="px-4 py-5">
-                <input type="radio" name="math-ans" [value]="57" [(ngModel)]="selectedOption" />
-                <span class="mono font-bold text-[#555] text-lg">57</span>
-            </label>
-        </div>
-
-        <div class="math-opt relative rounded-none">
-            <label class="px-4 py-5">
-                <input type="radio" name="math-ans" [value]="60" [(ngModel)]="selectedOption" />
-                <span class="mono font-bold text-[#555] text-lg">60</span>
-            </label>
-        </div>
-    </div>
+  <!-- ✅ options loop — no more repeating blocks -->
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-3 w-full">
+    @for (option of question.options; track option) {
+      <div class="math-opt relative rounded-none">
+        <label class="px-4 py-5">
+          <input type="radio" name="math-ans" [value]="option" [(ngModel)]="selectedOption" />
+          <span class="mono font-bold text-[#555] text-lg">{{ option }}</span>
+        </label>
+      </div>
+    }
+  </div>
 </div>

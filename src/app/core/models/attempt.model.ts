@@ -4,15 +4,15 @@ export type AnswerStatus    = 'passed' | 'failed';   // ✅ only for ChallengeAn
 export type StageStatus     = 'locked' | 'active' | 'passed' | 'failed'; // ✅ if you need it for UI
 
 export interface ImageSelectAnswer  { type: 'image-select';  selectedIndexes: number[]; correctIndexes: number[]; }
-export interface MathEquationAnswer { type: 'math-equation'; selectedOption: number;    correctOption: number;    timeRemainingSeconds: number; }
-export interface TextInputAnswer    { type: 'text-input';    typed: string;             expected: string; }
+export interface MathEquationAnswer { type: 'math-equation';   questionIndex: number;    selectedOption: number;    correctOption: number;    timeRemainingSeconds: number; }
+export interface TextInputAnswer    { type: 'text-input';      typed: string;            expected: string;          wordIndex: number;}
 
 export type AnswerData = ImageSelectAnswer | MathEquationAnswer | TextInputAnswer;
 
 export interface ChallengeAnswer {
   challengeId: string;
   type: ChallengeType;
-  status: AnswerStatus;    // ✅ only 'passed' | 'failed'
+  status: AnswerStatus;
   correct: boolean;
   attempts: number;
   stage: number;

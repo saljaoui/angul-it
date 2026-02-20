@@ -3,6 +3,20 @@ import { FormsModule } from '@angular/forms';
 import { ChallengeAnswer } from '../../../../core/models/attempt.model';
 import { StateService } from '../../../../core/services/state.service';
 
+interface MathQuestion {
+  display: string;
+  options: number[];
+  answer: number;
+}
+
+// ✅ pool of questions — one is randomly picked per session
+const QUESTIONS: MathQuestion[] = [
+  { display: '17 × 4 − 12 = ?', options: [55, 56, 57, 60], answer: 56 },
+  { display: '8 × 9 − 15 = ?',  options: [55, 57, 58, 60], answer: 57 },
+  { display: '6 × 7 + 3 = ?',   options: [42, 44, 45, 50], answer: 45 },
+  { display: '12 × 5 − 8 = ?',  options: [50, 52, 54, 60], answer: 52 },
+];
+
 @Component({
   selector: 'app-math-equation',
   imports: [FormsModule],
@@ -13,14 +27,20 @@ export class MathEquation implements OnInit {
   @Output() completed = new EventEmitter<ChallengeAnswer>();
   private state = inject(StateService);
 
+  questionIndex: number = Math.floor(Math.random() * QUESTIONS.length);
   selectedOption: number | null = null;
-  readonly correctOption = 56;
+
+  // ✅ picked randomly, driven by data not hardcode
+  get question(): MathQuestion {
+    return QUESTIONS[this.questionIndex];
+  }
 
   ngOnInit(): void {
     const attempt = this.state.getAttempt();
     const previous = attempt?.answers.find(a => a.stage === attempt.currentStage);
 
     if (previous?.data.type === 'math-equation') {
+      this.questionIndex = previous.data.questionIndex;
       this.selectedOption = previous.data.selectedOption;
     }
   }
@@ -30,11 +50,10 @@ export class MathEquation implements OnInit {
   }
 
   submit(): void {
-    if (this.selectedOption === null) {
-      return;
-    }
+    if (this.selectedOption === null) return;
 
-    const correct = this.selectedOption === this.correctOption;
+    const correct = this.selectedOption === this.question.answer;
+
     this.completed.emit({
       challengeId: crypto.randomUUID(),
       type: 'math-equation',
@@ -45,8 +64,9 @@ export class MathEquation implements OnInit {
       answeredAt: new Date().toISOString(),
       data: {
         type: 'math-equation',
+        questionIndex: this.questionIndex,
         selectedOption: this.selectedOption,
-        correctOption: this.correctOption,
+        correctOption: this.question.answer,
         timeRemainingSeconds: 0,
       },
     });

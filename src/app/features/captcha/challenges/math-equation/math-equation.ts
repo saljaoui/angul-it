@@ -9,7 +9,6 @@ interface MathQuestion {
   answer: number;
 }
 
-// ✅ pool of questions — one is randomly picked per session
 const QUESTIONS: MathQuestion[] = [
   { display: '17 × 4 − 12 = ?', options: [55, 56, 57, 60], answer: 56 },
   { display: '8 × 9 − 15 = ?',  options: [55, 57, 58, 60], answer: 57 },
@@ -30,7 +29,6 @@ export class MathEquation implements OnInit {
   questionIndex: number = Math.floor(Math.random() * QUESTIONS.length);
   selectedOption: number | null = null;
 
-  // ✅ picked randomly, driven by data not hardcode
   get question(): MathQuestion {
     return QUESTIONS[this.questionIndex];
   }

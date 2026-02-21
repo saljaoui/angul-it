@@ -51,7 +51,7 @@ export class TextInput implements OnInit {
       answeredAt: new Date().toISOString(),
       data: {
         type: 'text-input',
-        wordIndex: this.wordIndex, // ✅ save index
+        wordIndex: this.wordIndex,
         typed: this.typed,
         expected: this.word,
       },

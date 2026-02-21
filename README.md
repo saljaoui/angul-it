@@ -3,7 +3,7 @@
 An interactive multi-stage CAPTCHA web app that challenges users with visual and logic tasks, then summarizes their performance at the end.
 
 **Live Demo**
-`https://angulit.netlify.app`
+https://angulit.netlify.app
 
 **Overview**
 Angul-It is a single-page Angular application built to simulate real-world CAPTCHA flows. Users progress through multiple challenge stages, with validation at each step and persistent progress using local storage. The UI is responsive and focused on clarity and speed.
